@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search</title>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    input {
+      width: 500px;
+      height: 30px;
+      padding: 10px;
+      font-size: 18px;
+      border: 3px solid #fff;
+      background-color: #000;
+      color: #fff;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    p {
+      color: #888;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    #contactInfo { 
+      display: none; 
+      margin-top: 5px; 
+    }
+
+    #contactLink {
+      color: #888; 
+      text-decoration: none; 
+      cursor: pointer;
+    }
+
+    #author {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <form action="https://yandex.ru/search/" method="GET">
+    <input type="text" name="text">
+    <input type="hidden" name="lr" value="4">
+  </form>
+  <p id="author">By Vladimir Zolototrubov</p>
+  <p id="contactInfo"><a id="contactLink" href="https://t.me/vladimirsashimiv" target="_blank">Связаться в Telegram</a> (8:00 - 20:00 UTC+3)</p> 
+
+  <script>
+    const authorLink = document.getElementById('author');
+    const contactInfo = document.getElementById('contactInfo');
+ 
+    authorLink.addEventListener('click', function() {
+      contactInfo.style.display = contactInfo.style.display === 'block' ? 'none' : 'block'; 
+    });
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const query = document.querySelector('input[name="text"]').value;
+      window.location.href = `https://yandex.ru/search/?text=${encodeURIComponent(query)}&lr=4`;
+    });
+  </script>
+</body>
+</html>
